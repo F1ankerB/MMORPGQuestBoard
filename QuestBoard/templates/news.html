@@ -1,19 +1,24 @@
 {% extends "flatpages/default.html" %}
 
 {% block content %}
-    <h1>Публикации</h1>
+    <h1 class="my-4">Публикации</h1>
 
     <!-- Список новостей -->
-    {% for post in news %}
-        <div class="news-item">
-            <h2>{{ post.title }}</h2>
-            <p>Опубликовано: {{ post.created_at }}</p>
-            <p>{{ post.content|truncatewords:20|safe }}</p>
-            <p>Категория: {{post.category}}</p>
-            <p>Автор: {{post.author}}</p>
-        </div>
-    {% empty %}
-        <p>Публикаций нет.</p>
-    {% endfor %}
-
+    <div class="news-container">
+        {% for post in news %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="text-muted">Опубликовано: {{ post.created_at }}</p>
+                    <p class="card-text">{{ post.content|truncatewords:20|safe }}</p>
+                    <a href="{% url 'news_detail' post.id %}" class="btn btn-primary">Комментарии</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Категория: {{ post.category }} - Автор: {{ post.author }}
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">Публикаций нет.</p>
+        {% endfor %}
+    </div>
 {% endblock %}

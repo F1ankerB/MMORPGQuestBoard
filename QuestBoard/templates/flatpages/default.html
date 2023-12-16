@@ -26,20 +26,22 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'news_list' %}">News</a>
+                        <a class="nav-link" href="{% url 'news_list' %}">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_post' %}">Create Post</a>
-                    </li>
-                    <!-- Добавьте другие ссылки аналогичным образом -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        <a class="nav-link" href="{% url 'create_post' %}">Создать Пост</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout_view' %}">Logout</a>
+                        <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout_view' %}">Выход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'manage_comments' %}">Управление Комментариями</a>
                     </li>
                 </ul>
             </div>

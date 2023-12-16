@@ -4,22 +4,30 @@
 Детали публикации
 {% endblock title %}
 
-<!-- В контенте на странице мы выводим саму новость -->
 {% block content %}
-<h1>{{ news_detail.title }}</h1>
-<p>Категория: {{news_detail.category}}</p>
-<p>Автор: {{ news_detail.author }}</p>
-<p>Дата публикации: {{ news_detail.created_at }}</p>
-<p>{{ news_detail.content|safe}}</p>
+<div class="container my-4">
+    <h1 class="mb-3">{{ news_detail.title }}</h1>
+    <p><strong>Категория:</strong> {{ news_detail.category }}</p>
+    <p><strong>Автор:</strong> {{ news_detail.author }}</p>
+    <p><strong>Дата публикации:</strong> {{ news_detail.created_at }}</p>
+    <p>{{ news_detail.content|safe }}</p>
 
-<h2>Комментарии:</h2>
-{% for comment in comments %}
-    {% if comment.approved %}
-        <div class="comment">
-            <p>Комментарий от: {{ comment.user }}</p>
-            <p>Дата: {{ comment.created_at }}</p>
-            <p>{{ comment.text }}</p>
-        </div>
-    {% endif %}
-{% endfor %}
+    <a href="{% url 'news_list' %}" class="btn btn-secondary my-3">Назад к Новостям</a>
+    <a href="{% url 'add_comment' post_pk=news_detail.id %}" class="btn btn-primary my-3">Написать комментарий</a>
+
+    <h2 class="mt-4">Комментарии:</h2>
+    <div class="comments-section">
+        {% for comment in comments %}
+            {% if comment.approved %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-title"><strong>Комментарий от:</strong> {{ comment.user }}</p>
+                        <p class="card-text"><strong>Дата:</strong> {{ comment.created_at }}</p>
+                        <p class="card-text">{{ comment.text }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
