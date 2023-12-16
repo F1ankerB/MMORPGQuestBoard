@@ -5,11 +5,16 @@ from django.views.generic import (
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse
+
 class NewsList(ListView):
     model = Post
     template_name = 'news.html'
     context_object_name = 'news'
     paginate_by = 10
+
+    def get_queryset(self):
+        return Post.objects.order_by('-created_at')
+
 class NewsDetail(DetailView):
     model = Post
     template_name = 'news_detail.html'
