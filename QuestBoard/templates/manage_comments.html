@@ -1,0 +1,31 @@
+{% extends "flatpages/default.html" %}
+{% block content %}
+<h2>Управление комментариями</h2>
+
+<select id="postFilter" onchange="filterComments()">
+    <option value="">Все посты</option>
+    {% for post in posts %}
+        <option value="{{ post.id }}">{{ post.title }}</option>
+    {% endfor %}
+</select>
+
+<script>
+    function filterComments() {
+        var selectedPostId = document.getElementById('postFilter').value;
+        window.location.href = '?post_id=' + selectedPostId;
+    }
+</script>
+
+<form method="post">
+    {% csrf_token %}
+    {% for comment in comments %}
+        <div>
+            <strong>{{ comment.post.title }}</strong>
+            <p>{{ comment.text }}</p>
+            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+            <button type="submit" name="action" value="approve">Разрешить</button>
+            <button type="submit" name="action" value="reject">Отклонить</button>
+        </div>
+    {% endfor %}
+</form>
+{% endblock %}

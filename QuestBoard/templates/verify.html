@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Верификация</title>
+</head>
+<body>
+    <h2>Введите код подтверждения</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="code" placeholder="Код">
+        <button type="submit">Подтвердить</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Детали публикации
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим саму новость -->
+{% block content %}
+<h1>{{ news_detail.title }}</h1>
+<p>Категория: {{news_detail.category}}</p>
+<p>Автор: {{ news_detail.author }}</p>
+<p>Дата публикации: {{ news_detail.created_at }}</p>
+<p>{{ news_detail.content|safe}}</p>
+
+<h2>Комментарии:</h2>
+{% for comment in comments %}
+    {% if comment.approved %}
+        <div class="comment">
+            <p>Комментарий от: {{ comment.user }}</p>
+            <p>Дата: {{ comment.created_at }}</p>
+            <p>{{ comment.text }}</p>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "flatpages/default.html" %}
+
+{% block content %}
+    <h1>Публикации</h1>
+
+    <!-- Список новостей -->
+    {% for post in news %}
+        <div class="news-item">
+            <h2>{{ post.title }}</h2>
+            <p>Опубликовано: {{ post.created_at }}</p>
+            <p>{{ post.content|truncatewords:20|safe }}</p>
+            <p>Категория: {{post.category}}</p>
+            <p>Автор: {{post.author}}</p>
+        </div>
+    {% empty %}
+        <p>Публикаций нет.</p>
+    {% endfor %}
+
+{% endblock %}
